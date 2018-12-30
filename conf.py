@@ -17,4 +17,4 @@ dimension = 4
 seed_size = 40
 iterations = 200
 
-oracle = degreeDiscountIAC3
+oracle = degreeDiscountIAC2

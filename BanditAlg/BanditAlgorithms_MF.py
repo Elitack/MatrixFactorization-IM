@@ -71,5 +71,4 @@ class MFAlgorithm:
 			prob = 1
 		if prob < 0:
 			prob = 0
-		print(prob)
 		return prob		
