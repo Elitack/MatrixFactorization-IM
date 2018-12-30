@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
     P = nx.DiGraph()
     for (u,v) in G.edges():
-        P.add_edge(u, v, weight=FeatureScaling*prob[(u,v)])
+        P.add_edge(u, v, weight=prob[(u,v)])
     print('nodes:', len(G.nodes()))
     print('edges:', len(G.edges()))
     print('Done with Loading Feature')
