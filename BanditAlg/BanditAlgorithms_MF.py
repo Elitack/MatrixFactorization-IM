@@ -34,8 +34,6 @@ class MFUserStruct:
 	def refresh(self):
 		self.theta_out = np.dot(self.AInv, self.b)
 		self.theta_in = np.dot(self.CInv, self.d)
-		print(self.theta_in)
-		print(self.theta_out)
 		
 
 class MFAlgorithm:
