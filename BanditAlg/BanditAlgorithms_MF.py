@@ -54,7 +54,7 @@ class MFAlgorithm:
 		return S
 
 	def updateParameters(self, S, live_nodes, live_edges):
-		for u in S:
+		for u in live_nodes:
 			for (u, v) in self.G.edges(u):
 				if (u,v) in live_edges:
 					reward = live_edges[(u,v)]
