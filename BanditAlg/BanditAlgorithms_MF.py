@@ -60,11 +60,8 @@ class MFAlgorithm:
 					reward = live_edges[(u,v)]
 				else:
 					reward = 0
-				print(reward)
 				self.users[u].updateOut(self.users[v].theta_in, reward)
 				self.users[v].updateIn(self.users[u].theta_out, reward)
-				print("user {}, theta_out:{}".format(u, self.users[u].theta_out))
-				print("user {}, theta_in:{}".format(v, self.users[v].theta_in))
 				self.currentP[u][v]['weight']  = self.getP(self.users[u], self.users[v])
 
 	def getP(self, u, v):
