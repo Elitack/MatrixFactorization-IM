@@ -122,6 +122,6 @@ if __name__ == '__main__':
     algorithms = {}
     algorithms['UCB1'] = UCB1Algorithm(G, seed_size, oracle)
     algorithms['egreedy_0.1'] = eGreedyAlgorithm(G, seed_size, oracle, 0.1)
-    algorithms['OurAlgorithm'] = MFAlgorithm(G, seed_size, oracle, dimension, FeatureScaling)
+    algorithms['OurAlgorithm'] = MFAlgorithm(G, seed_size, oracle, dimension)
 
     simExperiment.runAlgorithms(algorithms)

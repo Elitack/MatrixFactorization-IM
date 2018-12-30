@@ -34,13 +34,12 @@ class MFUserStruct:
 		self.theta_in = np.dot(self.CInv, self.d)
 
 class MFAlgorithm:
-	def __init__(self, G, seed_size, oracle, dimension, FeatureScaling, feedback = 'edge'):
+	def __init__(self, G, seed_size, oracle, dimension, feedback = 'edge'):
 		self.G = G
 		self.oracle = oracle
 		self.seed_size = seed_size
 
 		self.dimension = dimension
-		self.FeatureScaling = FeatureScaling
 		self.feedback = feedback
 
 		self.currentP =nx.DiGraph()
