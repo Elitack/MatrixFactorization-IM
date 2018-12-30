@@ -11,13 +11,13 @@ class MFUserStruct:
 		self.A = lambda_*np.identity(n = self.dim)
 		self.C = lambda_*np.identity(n = self.dim)
 
-		self.b = np.zeros(self.dim)
-		self.d = np.zeros(self.dim)
+		self.b = np.array([random.random() for i in range(self.dim)])
+		self.d = np.array([random.random() for i in range(self.dim)])
 		self.AInv = np.linalg.inv(self.A)
 		self.CInv = np.linalg.inv(self.C)
 
-		self.theta_out = np.zeros(self.dim)
-		self.theta_in = np.zeros(self.dim)
+		self.theta_out = np.dot(self.AInv, self.b)
+		self.theta_in = np.dot(self.CInv, self.d)
 
 		self.pta_max = 1
 		
