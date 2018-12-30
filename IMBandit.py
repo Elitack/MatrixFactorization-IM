@@ -89,8 +89,8 @@ class simulateOnlineData:
         axa.set_xlabel("Iteration")
         axa.set_ylabel("Reward")
         axa.set_title("Average Reward")
-        plt.show()
         plt.savefig('./SimulationResults/AvgReward' + str(self.startTime.strftime('_%m_%d_%H_%M'))+'.pdf')
+        plt.show()
         # plot accumulated reward
         f, axa = plt.subplots(1, sharex=True)
         for alg_name in algorithms.keys():  
