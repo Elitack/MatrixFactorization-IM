@@ -117,7 +117,7 @@ if __name__ == '__main__':
     print('Done with Loading Feature')
     print('Graph build time:', time.time() - start)
 
-    simExperiment = simulateOnlineData(G, P, oracle, seed_size, iterations, batchSize, dataset)
+    simExperiment = simulateOnlineData(G, oracle, seed_size, iterations, batchSize, dataset)
 
     algorithms = {}
     algorithms['UCB1'] = UCB1Algorithm(G, seed_size, oracle)
