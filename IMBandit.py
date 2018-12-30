@@ -13,7 +13,7 @@ from IC.IC import runIC, runICmodel, runICmodel_n
 from IC.runIAC  import weightedEp, runIAC, runIACmodel, randomEp, uniformEp
 
 class simulateOnlineData:
-    def __init__(self, G, P, oracle, seed_size, iterations, batchSize, dataset):
+    def __init__(self, G, oracle, seed_size, iterations, batchSize, dataset):
         self.G = G
         self.TrueP = P
         self.seed_size = seed_size
