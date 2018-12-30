@@ -1,8 +1,8 @@
-from random import choice, random, sample
 import numpy as np
 import networkx as nx
 from BanditAlg.BanditAlgorithms import ArmBaseStruct
 from conf import *
+import random
 
 class MFUserStruct:
 	def __init__(self, featureDimension, lambda_, userID):
@@ -53,7 +53,7 @@ class MFAlgorithm:
 		for u in self.G.nodes():
 			self.users[u] = MFUserStruct(dimension, lambda_ , u)
 			for v in self.G[u]:
-				self.currentP.add_edge(u,v, weight=random())
+				self.currentP.add_edge(u,v, weight=random.random())
 
 	def decide(self):
 		S = self.oracle(self.G, self.seed_size, self.currentP)
