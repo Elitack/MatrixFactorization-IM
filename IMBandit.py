@@ -13,7 +13,7 @@ from IC.IC import runIC, runICmodel, runICmodel_n
 from IC.runIAC  import weightedEp, runIAC, runIACmodel, randomEp, uniformEp
 
 class simulateOnlineData:
-    def __init__(self, G, oracle, seed_size, iterations, batchSize, dataset):
+    def __init__(self, G, P, oracle, seed_size, iterations, batchSize, dataset):
         self.G = G
         self.TrueP = P
         self.seed_size = seed_size
@@ -117,11 +117,11 @@ if __name__ == '__main__':
     print('Done with Loading Feature')
     print('Graph build time:', time.time() - start)
 
-    simExperiment = simulateOnlineData(G, oracle, seed_size, iterations, batchSize, dataset)
+    simExperiment = simulateOnlineData(G, P, oracle, seed_size, iterations, batchSize, dataset)
 
     algorithms = {}
     algorithms['UCB1'] = UCB1Algorithm(G, seed_size, oracle)
     algorithms['egreedy_0.1'] = eGreedyAlgorithm(G, seed_size, oracle, 0.1)
-    algorithms['OurAlgorithm'] = MFAlgorithm(G, seed_size, oracle, dimension)
+    algorithms['OurAlgorithm'] = MFAlgorithm(G, P, seed_size, oracle, dimension)
 
     simExperiment.runAlgorithms(algorithms)

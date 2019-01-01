@@ -34,8 +34,9 @@ class MFUserStruct:
 		self.theta_in = np.dot(self.CInv, self.d)
 
 class MFAlgorithm:
-	def __init__(self, G, seed_size, oracle, dimension, feedback = 'edge'):
+	def __init__(self, G, P, seed_size, oracle, dimension, feedback = 'edge'):
 		self.G = G
+		self.trueP = P
 		self.oracle = oracle
 		self.seed_size = seed_size
 
@@ -54,6 +55,8 @@ class MFAlgorithm:
 		return S
 
 	def updateParameters(self, S, live_nodes, live_edges):
+		count = 0
+		loss = 0 
 		for u in live_nodes:
 			for (u, v) in self.G.edges(u):
 				if (u,v) in live_edges:
@@ -63,6 +66,12 @@ class MFAlgorithm:
 				self.users[u].updateOut(self.users[v].theta_in, reward)
 				self.users[v].updateIn(self.users[u].theta_out, reward)
 				self.currentP[u][v]['weight']  = self.getP(self.users[u], self.users[v])
+
+				estimateP = np.dot(self.users[u].theta_out, self.users[v].theta_in)
+				trueP = self.trueP[u][v]['weight']
+				loss += np.square(estimateP-trueP)
+				count += 1
+		print('average loss: {}'.format(loss/count))
 
 	def getP(self, u, v):
 		CB = alpha_1 * np.dot(np.dot(v.theta_in, u.AInv), v.theta_in) + alpha_2 * np.dot(np.dot(u.theta_out, v.CInv), u.theta_out)
