@@ -9,12 +9,12 @@ prob_address = './datasets/Flickr/Probability.dic'
 
 dataset = 'Flickr' #Choose from 'default', 'NetHEPT', 'Flickr'
 batchSize = 1
-alpha_1 = 0.1
-alpha_2 = 0.1 
+alpha_1 = 0.2
+alpha_2 = 0.2 
 lambda_ = 0.4
 gamma = 0.1
 dimension = 4
 seed_size = 40
 iterations = 200
 
-oracle = degreeDiscountIAC2
+oracle = degreeDiscountIAC3

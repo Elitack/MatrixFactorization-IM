@@ -5,14 +5,14 @@ import networkx as nx
 import random
 
 save_dir = '../datasets/Flickr/'
-max_degree = 6000
+max_degree = 20
 min_degree = 0
 NodeList = pickle.load(open(save_dir+'NodesDegree'+str(max_degree)+'_'+str(min_degree)+'.list', "rb" ))
 print('Done with loading List')
 
 NodeNum = len(NodeList)
 print(NodeNum)
-Small_NodeList = [NodeList[i] for i in sorted(random.sample(range(len(NodeList)), NodeNum//25 ))]
+Small_NodeList = [NodeList[i] for i in sorted(random.sample(range(len(NodeList)), NodeNum//6))]
 NodeList = Small_NodeList
 print(len(NodeList))
 pickle.dump(NodeList, open(save_dir+'Small_NodeList.list', "wb" ))

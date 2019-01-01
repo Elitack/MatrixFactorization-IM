@@ -16,6 +16,8 @@ def featureUniform(dimension, scale=1):
 	l2_norm = np.linalg.norm(vector, ord =2)
 	
 	vector = vector/l2_norm
+	if random.random()<0.3:
+		vector = vector*0.3
 	vector = vector * scale
 	return vector
 
