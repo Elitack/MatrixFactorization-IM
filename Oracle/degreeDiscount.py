@@ -144,7 +144,7 @@ def degreeDiscountIAC3(G, k, Ep):
 
     # initialize degree discount
     for u in G.nodes():
-        d[u] = sum([G[u][v]['weight']*Ep[u][v]['weight'] for v in G[u]]) # each edge adds degree 1
+        d[u] = sum([G[u][v]['weight']*Ep[u][v]['weight'] for v in G[u]]) + 1 # each edge adds degree 1
         # d[u] = len(G[u]) # each neighbor adds degree 1
         dd.add_task(u, -d[u]) # add degree of each node
         t[u] = 0
@@ -162,7 +162,7 @@ def degreeDiscountIAC3(G, k, Ep):
                         multi *= (1 - Ep[n][v]['weight'])
                 for n in G[v]:
                     if n in S:
-                        add -= Ep[v][n]['weight']
+                        continue
                     else:
                         add += Ep[v][n]['weight']
                 add += 1
