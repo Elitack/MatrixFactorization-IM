@@ -32,15 +32,55 @@ oracle = degreeDiscountIAC3
 #### Experiment
 
 ```
-average loss: 0.002148709235656735
+Dimension: 4, Node number:6191, Edge Number: 9288
 average reward for oracle: 252.19
 UCB1: 96.94
 egreedy_0.1: 160.16
 OurAlgorithm: 223.68
 ```
 <p float="left">
-<img src="./SimulationResults/avgReward1.png" alt="alt text" width="400" height="300">
-<img src="./SimulationResults/acuReward1.png" alt="alt text" width="400" height="300">
+<img src="./SimulationResults/avgReward-normal.png" alt="alt text" width="400" height="300">
+<img src="./SimulationResults/acuReward-normal.png" alt="alt text" width="400" height="300">
+</p>
+
+```
+Dimension: 4, Node number:13353, Edge Number: 131534
+average reward for oracle: 6204.25
+UCB1: 6217.24
+egreedy_0.1: 6215.47
+OurAlgorithm: 6213.86
+```
+
+
+
+<p float="left">
+<img src="./SimulationResults/avgReward-dense.png" alt="alt text" width="400" height="300">
+<img src="./SimulationResults/acuReward-dense.png" alt="alt text" width="400" height="300">
 </p>
 
 
+
+
+
+```
+Dimension: 4, Node number:13353, Edge number: 131534
+average reward for oracle: 532.15
+UCB1: 437.42
+egreedy_0.1: 493.68
+OurAlgorithm: 470.27
+```
+
+<p float="left">
+<img src="./SimulationResults/avgReward-denseLowProb.png" alt="alt text" width="400" height="300">
+<img src="./SimulationResults/acuReward-denseLowProb.png" alt="alt text" width="400" height="300">
+</p>
+
+
+
+Loss for Dimension 1, Dimension 4, Dimension 16:
+
+<p float="left">
+<img src="./SimulationResults/loss-1.png" alt="alt text" width="260" height="200">
+<img src="./SimulationResults/loss-4.png" alt="alt text" width="260" height="200">
+<img src="./SimulationResults/loss-16.png" alt="alt text" width="260" height="200">
+</p>
