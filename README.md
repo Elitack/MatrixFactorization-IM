@@ -63,7 +63,7 @@ OurAlgorithm: 6213.86
 
 
 ```
-Dimension: 4, Node number:13353, Edge number: 131534
+Dimension: 4, Node number:13353, Edge number: 131534, Scale = 0.2
 average reward for oracle: 532.15
 UCB1: 437.42
 egreedy_0.1: 493.68
