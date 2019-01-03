@@ -80,7 +80,7 @@ OurAlgorithm: 470.27
 Loss for Dimension 1, Dimension 4, Dimension 16:
 
 <p float="left">
-<img src="./SimulationResults/loss-1.png" alt="alt text" width="260" height="200">
-<img src="./SimulationResults/loss-4.png" alt="alt text" width="260" height="200">
-<img src="./SimulationResults/loss-16.png" alt="alt text" width="260" height="200">
+<img src="./SimulationResults/Loss-1.png" alt="alt text" width="260" height="200">
+<img src="./SimulationResults/Loss-4.png" alt="alt text" width="260" height="200">
+<img src="./SimulationResults/Loss-16.png" alt="alt text" width="260" height="200">
 </p>
