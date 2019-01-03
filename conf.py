@@ -6,6 +6,7 @@ save_address = "./SimulationResults"
 
 graph_address = './datasets/Flickr/Small_Final_SubG.G'
 prob_address = './datasets/Flickr/Probability.dic'
+param_address = './datasets/Flickr/Small_nodeFeatures.dic'
 
 dataset = 'Flickr' #Choose from 'default', 'NetHEPT', 'Flickr'
 batchSize = 1

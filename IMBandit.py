@@ -103,11 +103,34 @@ class simulateOnlineData:
         plt.savefig('./SimulationResults/AcuReward' + str(self.startTime.strftime('_%m_%d_%H_%M'))+'.pdf')
         plt.show()
 
+        for alg_name in algorithms.keys():  
+            try:
+                loss = algorithms[alg_name].getLoss()
+            except:
+                continue
+            f, ax1 = plt.subplots()
+            color = 'tab:red'
+            ax1.set_xlabel("Iteration")
+            ax1.set_ylabel('Loss of Probability', color=color)
+            ax1.plot(self.tim_, loss[:, 0], color=color, label='Probability')
+            ax1.tick_params(axis='y', labelcolor=color)
+
+            ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+            ax2.set_ylabel('Loss of Theta and Beta', color='tab:blue')  # we already handled the x-label with ax1
+            ax2.plot(self.tim_, loss[:, 1], color='tab:blue', linestyle=':', label = 'Theta')
+            ax2.plot(self.tim_, loss[:, 2], color='tab:blue', linestyle='--', label = 'Beta')
+            ax2.tick_params(axis='y', labelcolor='tab:blue')
+            ax2.legend(loc='upper left',prop={'size':9})
+            f.tight_layout()  # otherwise the right y-label is slightly clipped
+            plt.savefig('./SimulationResults/Loss' + str(self.startTime.strftime('_%m_%d_%H_%M'))+'.pdf')
+            plt.show()
+
 if __name__ == '__main__':
     start = time.time()
 
     G = pickle.load(open(graph_address, 'rb'), encoding='latin1')
     prob = pickle.load(open(prob_address, 'rb'), encoding='latin1')
+    parameter = pickle.load(open(param_address, 'rb'), encoding='latin1')
 
     P = nx.DiGraph()
     for (u,v) in G.edges():
@@ -122,6 +145,6 @@ if __name__ == '__main__':
     algorithms = {}
     algorithms['UCB1'] = UCB1Algorithm(G, seed_size, oracle)
     algorithms['egreedy_0.1'] = eGreedyAlgorithm(G, seed_size, oracle, 0.1)
-    algorithms['OurAlgorithm'] = MFAlgorithm(G, P, seed_size, oracle, dimension)
+    algorithms['OurAlgorithm'] = MFAlgorithm(G, P, parameter, seed_size, oracle, dimension)
 
     simExperiment.runAlgorithms(algorithms)

@@ -34,14 +34,16 @@ class MFUserStruct:
 		self.theta_in = np.dot(self.CInv, self.d)
 
 class MFAlgorithm:
-	def __init__(self, G, P, seed_size, oracle, dimension, feedback = 'edge'):
+	def __init__(self, G, P, parameter, seed_size, oracle, dimension, feedback = 'edge'):
 		self.G = G
 		self.trueP = P
+		self.parameter = parameter
 		self.oracle = oracle
 		self.seed_size = seed_size
 
 		self.dimension = dimension
 		self.feedback = feedback
+		self.list_loss = []
 
 		self.currentP =nx.DiGraph()
 		self.users = {}  #Nodes
@@ -56,10 +58,12 @@ class MFAlgorithm:
 
 	def updateParameters(self, S, live_nodes, live_edges):
 		count = 0
-		loss = 0 
+		loss_p = 0 
+		loss_out = 0
+		loss_in = 0
 		for u in live_nodes:
 			for (u, v) in self.G.edges(u):
-				if (u,v) in live_edges:
+				if (u, v) in live_edges:
 					reward = live_edges[(u,v)]
 				else:
 					reward = 0
@@ -69,9 +73,11 @@ class MFAlgorithm:
 
 				estimateP = np.dot(self.users[u].theta_out, self.users[v].theta_in)
 				trueP = self.trueP[u][v]['weight']
-				loss += np.square(estimateP-trueP)
+				loss_p += np.abs(estimateP-trueP)
+				loss_out += np.linalg.norm(self.users[u].theta_out-self.parameter[u][1], ord =2)
+				loss_in += np.linalg.norm(self.users[v].theta_in-self.parameter[v][0], ord =2)
 				count += 1
-		print('average loss: {}'.format(loss/count))
+		self.list_loss.append([loss_p/count, loss_out/count, loss_in/count])
 
 	def getP(self, u, v):
 		CB = alpha_1 * np.dot(np.dot(v.theta_in, u.AInv), v.theta_in) + alpha_2 * np.dot(np.dot(u.theta_out, v.CInv), u.theta_out)
@@ -81,3 +87,6 @@ class MFAlgorithm:
 		if prob < 0:
 			prob = 0
 		return prob		
+
+	def getLoss(self):
+		return np.asarray(self.list_loss)
