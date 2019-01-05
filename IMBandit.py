@@ -13,13 +13,12 @@ from IC.IC import runIC, runICmodel, runICmodel_n
 from IC.runIAC  import weightedEp, runIAC, runIACmodel, randomEp, uniformEp
 
 class simulateOnlineData:
-    def __init__(self, G, P, oracle, seed_size, iterations, batchSize, dataset):
+    def __init__(self, G, P, oracle, seed_size, iterations, dataset):
         self.G = G
         self.TrueP = P
         self.seed_size = seed_size
         self.oracle = oracle
         self.iterations = iterations
-        self.batchSize = batchSize
         self.dataset = dataset
         self.startTime = datetime.datetime.now()
         self.BatchCumlateReward = {}
@@ -68,15 +67,14 @@ class simulateOnlineData:
                 f.write('\n') 
         else:
             # if run in the experiment, save the results
-            if iter_ % self.batchSize == 0:
-                print("Iteration %d" % iter_, " Elapsed time", datetime.datetime.now() - self.startTime)
-                self.tim_.append(iter_)
-                for alg_name in algorithms.keys():
-                    self.BatchCumlateReward[alg_name].append(sum(self.AlgReward[alg_name][-1:]))
-                with open(self.filenameWriteReward, 'a+') as f:
-                    f.write(str(iter_))
-                    f.write(',' + ','.join([str(self.BatchCumlateReward[alg_name][-1]) for alg_name in algorithms.keys()]))
-                    f.write('\n')
+            print("Iteration %d" % iter_, " Elapsed time", datetime.datetime.now() - self.startTime)
+            self.tim_.append(iter_)
+            for alg_name in algorithms.keys():
+                self.BatchCumlateReward[alg_name].append(sum(self.AlgReward[alg_name][-1:]))
+            with open(self.filenameWriteReward, 'a+') as f:
+                f.write(str(iter_))
+                f.write(',' + ','.join([str(self.BatchCumlateReward[alg_name][-1]) for alg_name in algorithms.keys()]))
+                f.write('\n')
 
     def showResult(self):
         print('average reward for oracle:', np.mean(self.result_oracle))
@@ -140,7 +138,7 @@ if __name__ == '__main__':
     print('Done with Loading Feature')
     print('Graph build time:', time.time() - start)
 
-    simExperiment = simulateOnlineData(G, P, oracle, seed_size, iterations, batchSize, dataset)
+    simExperiment = simulateOnlineData(G, P, oracle, seed_size, iterations, dataset)
 
     algorithms = {}
     algorithms['UCB1'] = UCB1Algorithm(G, seed_size, oracle)

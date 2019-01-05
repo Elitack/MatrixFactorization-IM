@@ -9,7 +9,6 @@ prob_address = './datasets/Flickr/Probability.dic'
 param_address = './datasets/Flickr/Small_nodeFeatures.dic'
 
 dataset = 'Flickr' #Choose from 'default', 'NetHEPT', 'Flickr'
-batchSize = 1
 alpha_1 = 0.2
 alpha_2 = 0.2 
 lambda_ = 0.4
