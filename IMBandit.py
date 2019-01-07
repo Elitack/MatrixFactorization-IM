@@ -6,6 +6,7 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 from conf import *
+from Tool.utilFunc import *
 
 from BanditAlg.BanditAlgorithms import UCB1Algorithm, eGreedyAlgorithm 
 from BanditAlg.BanditAlgorithms_MF import MFAlgorithm
@@ -57,7 +58,7 @@ class simulateOnlineData:
     def resultRecord(self, iter_=None):
         # if initialize
         if iter_ is None:
-            timeRun = self.startTime.strftime('_%m_%d_%H_%M') 
+            timeRun = self.startTime.strftime('_%m_%d_%H_%M_%S') 
             fileSig = '_seedsize'+str(self.seed_size) + '_iter'+str(self.iterations)+'_'+str(self.oracle.__name__)+'_'+self.dataset
             self.filenameWriteReward = os.path.join(save_address, 'AccReward' + timeRun + fileSig + '.csv')
 
@@ -137,6 +138,7 @@ if __name__ == '__main__':
     print('edges:', len(G.edges()))
     print('Done with Loading Feature')
     print('Graph build time:', time.time() - start)
+    plotSoftDegree(P)
 
     simExperiment = simulateOnlineData(G, P, oracle, seed_size, iterations, dataset)
 

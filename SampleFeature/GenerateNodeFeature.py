@@ -11,7 +11,7 @@ import numpy as np
 import operator
 
 save_dir = '../datasets/Flickr/'
-def featureUniform(dimension, scale=1):
+def featureUniform(dimension, scale=0.2):
 	vector = np.array([random.random() for i in range(dimension)])
 	l2_norm = np.linalg.norm(vector, ord =2)
 	

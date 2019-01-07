@@ -73,6 +73,15 @@ def ReadGraph_Flickr(file_address):
 	print('Built Flickr graph G', time.time() - start, 's')
 	return G
 
+def plotSoftDegree(G):
+	degree = []
+	for u in G.nodes():
+		d = 0
+		for (u, v) in G.edges(u):
+			d += G[u][v]['weight']
+		degree.append(d)
+	plt.hist(degree)
+	plt.show()
 
 
 
