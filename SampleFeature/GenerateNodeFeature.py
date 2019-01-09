@@ -11,25 +11,39 @@ import numpy as np
 import operator
 
 save_dir = '../datasets/Flickr/'
-def featureUniform(dimension, scale=0.2):
+def featureUniform(dimension, scale):
 	vector = np.array([random.random() for i in range(dimension)])
 	l2_norm = np.linalg.norm(vector, ord =2)
 	
 	vector = vector/l2_norm
-	if random.random()<0.3:
-		vector = vector*0.3
-	vector = vector * scale
+
+	gau = np.random.normal(0.5, 0.5, 1)[0]
+	while gau < 0 or gau > 1:
+		gau = np.random.normal(0.5, 0.5, 1)[0]
+
+	vector = vector / scale * gau * 1
+
 	return vector
 
 dimension = 4
 nodeDic = {}
 edgeDic = {}
+degree = []
 G = pickle.load(open(save_dir+'Small_Final_SubG.G', 'rb'))
 for u in G.nodes():
-	nodeDic[u] = [featureUniform(dimension), featureUniform(dimension)]
+	s = len(G.edges(u))
+	nodeDic[u] = [featureUniform(dimension, 1), featureUniform(dimension, s)]
 for u in G.nodes():
+	d = 0
 	for v in G[u]:
-		edgeDic[(u,v)] = np.dot(nodeDic[u][1], nodeDic[v][0])
-
+		prob = np.dot(nodeDic[u][1], nodeDic[v][0]) * 4
+		if prob > 1:
+			prob = 1
+		edgeDic[(u,v)] = prob
+		d += prob
+	degree.append(d)
 pickle.dump(nodeDic, open(save_dir+'Small_nodeFeatures.dic', "wb" ))
 pickle.dump(edgeDic, open(save_dir+'Probability.dic', "wb" ))
+
+plt.hist(degree)
+plt.show()
