@@ -46,6 +46,7 @@ OurAlgorithm: 1033.04
 <img src="./SimulationResults/Loss-dense.png" alt="alt text" width="400" height="300">
 </p>
 
+
 The probability does not matter so much:
 
 scale: 1, 2, 4:
