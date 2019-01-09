@@ -14,7 +14,7 @@ alpha_2 = 0.2
 lambda_ = 0.4
 gamma = 0.1
 dimension = 4
-seed_size = 40
+seed_size = 300
 iterations = 200
 steps = 5
 
