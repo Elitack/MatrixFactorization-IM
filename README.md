@@ -43,7 +43,7 @@ OurAlgorithm: 1033.04
 <img src="./SimulationResults/acuReward-dense.png" alt="alt text" width="400" height="300">
 <img src="./SimulationResults/softDegree-dense.png" alt="alt text" width="400" height="300">
 <img src="./SimulationResults/hardDegree-dense.png" alt="alt text" width="400" height="300">
-<img src="./SimulationResults/loss-dense.png" alt="alt text" width="400" height="300">
+<img src="./SimulationResults/Loss-dense.png" alt="alt text" width="400" height="300">
 </p>
 
 The probability does not matter so much:
