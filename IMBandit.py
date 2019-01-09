@@ -44,10 +44,7 @@ class simulateOnlineData:
                 S = alg.decide() 
                 reward, live_nodes, live_edges = runICmodel_n(G, S, self.TrueP)
 
-                if alg.feedback == 'node':
-                    alg.updateParameters(S, live_nodes)
-                elif alg.feedback == 'edge':
-                    alg.updateParameters(S, live_nodes, live_edges)
+                alg.updateParameters(S, live_nodes, live_edges, iter_)
 
                 self.AlgReward[alg_name].append(reward)
 
@@ -138,8 +135,7 @@ if __name__ == '__main__':
     print('edges:', len(G.edges()))
     print('Done with Loading Feature')
     print('Graph build time:', time.time() - start)
-    plotSoftDegree(P)
-
+    
     simExperiment = simulateOnlineData(G, P, oracle, seed_size, iterations, dataset)
 
     algorithms = {}
