@@ -40,6 +40,7 @@ class MFAlgorithm:
 		self.parameter = parameter
 		self.oracle = oracle
 		self.seed_size = seed_size
+		self.q = 0.25
 
 		self.dimension = dimension
 		self.feedback = feedback
@@ -56,7 +57,7 @@ class MFAlgorithm:
 		S = self.oracle(self.G, self.seed_size, self.currentP)
 		return S
 
-	def updateParameters(self, S, live_nodes, live_edges):
+	def updateParameters(self, S, live_nodes, live_edges, it):
 		count = 0
 		loss_p = 0 
 		loss_out = 0
@@ -69,7 +70,7 @@ class MFAlgorithm:
 					reward = 0
 				self.users[u].updateOut(self.users[v].theta_in, reward)
 				self.users[v].updateIn(self.users[u].theta_out, reward)
-				self.currentP[u][v]['weight']  = self.getP(self.users[u], self.users[v])
+				self.currentP[u][v]['weight']  = self.getP(self.users[u], self.users[v], it)
 
 				estimateP = np.dot(self.users[u].theta_out, self.users[v].theta_in)
 				trueP = self.trueP[u][v]['weight']
@@ -79,9 +80,9 @@ class MFAlgorithm:
 				count += 1
 		self.list_loss.append([loss_p/count, loss_out/count, loss_in/count])
 
-	def getP(self, u, v):
+	def getP(self, u, v, it):
 		CB = alpha_1 * np.dot(np.dot(v.theta_in, u.AInv), v.theta_in) + alpha_2 * np.dot(np.dot(u.theta_out, v.CInv), u.theta_out)
-		prob = np.dot(u.theta_out, v.theta_in) + CB
+		prob = np.dot(u.theta_out, v.theta_in) + CB + 4 * np.power(self.q, it)
 		if prob > 1:
 			prob = 1
 		if prob < 0:
