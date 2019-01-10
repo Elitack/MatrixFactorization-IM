@@ -37,7 +37,7 @@ class eGreedyArmStruct(ArmBaseStruct):
             pta = self.totalReward/float(self.numPlayed)
             if pta > self.p_max:
                 pta = self.p_max
-        return random()
+        return pta
         
 class UCB1Algorithm:
     def __init__(self, G, seed_size, oracle, feedback = 'edge'):

@@ -25,7 +25,7 @@ def featureUniform(dimension, scale):
 
 	return vector
 
-dimension = 1
+dimension = 4
 nodeDic = {}
 edgeDic = {}
 degree = []
