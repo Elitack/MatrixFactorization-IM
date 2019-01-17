@@ -40,7 +40,7 @@ class MFAlgorithm:
 		self.parameter = parameter
 		self.oracle = oracle
 		self.seed_size = seed_size
-		self.q = 0.25
+		self.q = 0
 
 		self.dimension = dimension
 		self.feedback = feedback

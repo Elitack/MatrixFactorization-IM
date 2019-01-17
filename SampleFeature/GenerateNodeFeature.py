@@ -36,7 +36,7 @@ for u in G.nodes():
 for u in G.nodes():
 	d = 0
 	for v in G[u]:
-		prob = np.dot(nodeDic[u][1], nodeDic[v][0]) * 1
+		prob = np.dot(nodeDic[u][1], nodeDic[v][0]) * 4
 		if prob > 1:
 			prob = 1
 		edgeDic[(u,v)] = prob
