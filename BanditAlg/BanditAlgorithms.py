@@ -29,14 +29,17 @@ class UCB1Struct(ArmBaseStruct):
 
         
 class eGreedyArmStruct(ArmBaseStruct):
-    def getProb(self, allNumPlayed = None):
-        if self.numPlayed == 0:
-            pta = 0
+    def getProb(self, epsilon):
+        if random() < epsilon: # random exploration
+            pta = random()
         else:
-            #print 'GreedyProb', self.totalReward/float(self.numPlayed)
-            pta = self.totalReward/float(self.numPlayed)
-            if pta > self.p_max:
-                pta = self.p_max
+            if self.numPlayed == 0:
+                pta = 0
+            else:
+                #print 'GreedyProb', self.totalReward/float(self.numPlayed)
+                pta = self.totalReward/float(self.numPlayed)
+                if pta > self.p_max:
+                    pta = self.p_max
         return pta
         
 class UCB1Algorithm:
@@ -90,11 +93,7 @@ class eGreedyAlgorithm:
         self.epsilon = epsilon
 
     def decide(self):
-        arm_Picked = None
-        if random() < self.epsilon: # random exploration
-            S = sample(list(self.G.nodes()), self.seed_size)
-        else:
-            S = self.oracle(self.G, self.seed_size, self.currentP)# self.oracle(self.G, self.seed_size, self.arms)
+        S = self.oracle(self.G, self.seed_size, self.currentP)# self.oracle(self.G, self.seed_size, self.arms)
         return S
 
     def updateParameters(self, S, live_nodes, live_edges, iter_): 
@@ -106,6 +105,6 @@ class eGreedyAlgorithm:
                     self.arms[(u, v)].updateParameters(reward=0)
                 #update current P
                 #print self.TotalPlayCounter
-                self.currentP[u][v]['weight'] = self.arms[(u,v)].getProb(self.TotalPlayCounter) 
+                self.currentP[u][v]['weight'] = self.arms[(u,v)].getProb(self.epsilon) 
     def getP(self):
         return self.currentP
