@@ -7,9 +7,11 @@ save_address = "./SimulationResults"
 # graph_address = './datasets/Flickr/Small_Final_SubG.G'
 # prob_address = './datasets/Flickr/Probability.dic'
 # param_address = './datasets/Flickr/Small_nodeFeatures.dic'
+# edge_feature_address = './datasets/Flickr/Small_edgeFeatures.dic'
 graph_address = './datasets/Flickr/G_Union.G'
 prob_address = './datasets/Flickr/ProbUnion.dic'
 param_address = './datasets/Flickr/NodeFeaturesUnion.dic'
+edge_feature_address = './datasets/Flickr/EdgeFeaturesUnion.dic'
 
 dataset = 'Flickr' #Choose from 'default', 'NetHEPT', 'Flickr'
 alpha_1 = 0.1

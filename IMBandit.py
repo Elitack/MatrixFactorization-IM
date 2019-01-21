@@ -10,6 +10,7 @@ from Tool.utilFunc import *
 
 from BanditAlg.BanditAlgorithms import UCB1Algorithm, eGreedyAlgorithm 
 from BanditAlg.BanditAlgorithms_MF import MFAlgorithm
+from BanditAlg.BanditAlgorithms_LinUCB import N_LinUCBAlgorithm
 from IC.IC import runIC, runICmodel, runICmodel_n
 from IC.runIAC  import weightedEp, runIAC, runIACmodel, randomEp, uniformEp
 
@@ -127,6 +128,7 @@ if __name__ == '__main__':
     G = pickle.load(open(graph_address, 'rb'), encoding='latin1')
     prob = pickle.load(open(prob_address, 'rb'), encoding='latin1')
     parameter = pickle.load(open(param_address, 'rb'), encoding='latin1')
+    feature_dic = pickle.load(open(edge_feature_address, 'rb'), encoding='latin1')
 
     P = nx.DiGraph()
     for (u,v) in G.edges():
@@ -141,6 +143,7 @@ if __name__ == '__main__':
     algorithms = {}
     algorithms['UCB1'] = UCB1Algorithm(G, seed_size, oracle)
     algorithms['egreedy_0.1'] = eGreedyAlgorithm(G, seed_size, oracle, 0.1)
+    algorithms['LinUCB'] = N_LinUCBAlgorithm(G, seed_size, oracle, dimension*dimension, alpha_1, lambda_, feature_dic, 1)
     algorithms['OurAlgorithm'] = MFAlgorithm(G, P, parameter, seed_size, oracle, dimension)
 
     simExperiment.runAlgorithms(algorithms)

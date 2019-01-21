@@ -51,7 +51,6 @@ class N_LinUCBAlgorithm:
 		self.G = G
 		self.oracle = oracle
 		self.seed_size = seed_size
-
 		self.dimension = dimension
 		self.alpha = alpha
 		self.lambda_ = lambda_
@@ -72,7 +71,7 @@ class N_LinUCBAlgorithm:
 		S = self.oracle(self.G, self.seed_size, self.currentP)
 		return S
 
-	def updateParameters(self, S, live_nodes, live_edges):
+	def updateParameters(self, S, live_nodes, live_edges, _iter):
 		for u in S:
 			for (u, v) in self.G.edges(u):
 				featureVector = self.FeatureScaling*self.FeatureDic[(u,v)]
