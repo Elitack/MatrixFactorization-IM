@@ -72,7 +72,7 @@ class N_LinUCBAlgorithm:
 		return S
 
 	def updateParameters(self, S, live_nodes, live_edges, _iter):
-		for u in S:
+		for u in live_nodes:
 			for (u, v) in self.G.edges(u):
 				featureVector = self.FeatureScaling*self.FeatureDic[(u,v)]
 				if (u,v) in live_edges:

@@ -10,11 +10,13 @@ IC/IC.py -- Independent cascade model, runIC() returns influence result given se
 
 ### Result
 
-Simulation dimension: 20
+Result on small graph: 2000 nodes
 
 <p float="left">
-<img src="./SimulationResults/ModelMismatch.png" alt="alt text" width="400" height="300">
+<img src="./SimulationResults/AvgReward_Diffusion.png" alt="alt text" width="400" height="300">
+<img src="./SimulationResults/AcuReward_Diffusion.png" alt="alt text" width="400" height="300">
 </p>
+
 
 #### Parameter
 
@@ -37,23 +39,13 @@ oracle = degreeDiscountIAC3
 
 #### Experiment
 
-```
-average reward for oracle: 1144.06
-UCB1: 855.26
-egreedy_0.1: 1033.51
-OurAlgorithm: 1057.44
-```
+Result on Large Graph: 10000+ nodes
+
 <p float="left">
 <img src="./SimulationResults/avgReward-dense.png" alt="alt text" width="400" height="300">
 <img src="./SimulationResults/acuReward-dense.png" alt="alt text" width="400" height="300">
 </p>
-
-```
-average reward for oracle: 1075.605
-UCB1: 447.38
-egreedy_0.1: 873.09
-OurAlgorithm: 971.12
-```
+Result on two-cluster graph:
 
 <p float="left">
 <img src="./SimulationResults/avgReward-cluster.png" alt="alt text" width="400" height="300">

@@ -6,5 +6,6 @@ _*
 *.pyc
 *.bak
 datasets
+datasets-backup
 *.xlsx
 *.pdf
